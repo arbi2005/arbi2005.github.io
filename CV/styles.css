@@ -374,17 +374,3 @@ footer {
     }
 }
 
-/* Hide copyright visually except when at bottom (handled by JS) */
-#copyrightFooter {
-    background: none !important;
-    box-shadow: none !important;
-    color: #aaa !important;
-    /* Prevent any background or border from showing when fading in/out */
-}
-
-/* Hide copyright when in the bottom section */
-.hide-copyright {
-    opacity: 0 !important;
-    pointer-events: none !important;
-    transition: opacity 0.4s;
-}
