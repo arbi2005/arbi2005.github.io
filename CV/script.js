@@ -24,6 +24,4 @@ window.addEventListener('DOMContentLoaded', function() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     }
-
-    // Remove copyright section JS logic
 });
