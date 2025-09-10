@@ -44,14 +44,14 @@ window.addEventListener('DOMContentLoaded', function() {
 
     if (menuToggle && sideNav && navOverlay) {
         menuToggle.addEventListener('click', function() {
-            sideNav.classList.add('open');
-            navOverlay.style.display = 'block';
+            sideNav.classList.toggle('open');
+            navOverlay.style.display = sideNav.classList.contains('open') ? 'block' : 'none';
         });
         navOverlay.addEventListener('click', function() {
             sideNav.classList.remove('open');
             navOverlay.style.display = 'none';
         });
-        // Optional: close menu when a link is clicked
+        // Close menu when a link is clicked
         sideNav.querySelectorAll('a').forEach(function(link) {
             link.addEventListener('click', function() {
                 sideNav.classList.remove('open');

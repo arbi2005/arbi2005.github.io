@@ -14,6 +14,7 @@ body {
     overflow-x: hidden;
     min-height: 100vh;
     padding-top: 7vh; /* Prevent content from being hidden under the fixed top nav */
+    padding-bottom: 8vh; /* Ensure content is not hidden behind the fixed footer */
 }
 
 /* Accent and glass variables */
@@ -182,6 +183,7 @@ nav ul li a:hover, nav ul li a.active {
     .top-nav {
         height: auto;
         padding: 1vh 0;
+        border-radius: 0 18px 18px 0;
     }
     .top-nav ul {
         gap: 2vh;
@@ -189,6 +191,7 @@ nav ul li a:hover, nav ul li a.active {
     .top-nav ul li a {
         font-size: 1.7vh;
         padding: 1vh 1.5vh;
+        border-radius: 18px !important;
     }
 }
 
@@ -236,27 +239,38 @@ nav ul li a:hover, nav ul li a.active {
         position: fixed;
         top: 0;
         left: 0;
-        width: 28vh;
-        max-width: 80vw;
+        width: 65 vw;
+        max-width: 220px;
         height: 100vh;
         background: rgba(24,24,24,0.98);
         z-index: 2001;
         box-shadow: 2vh 0 12px rgba(0,0,0,0.18);
-        display: flex;
         flex-direction: column;
         justify-content: flex-start;
         align-items: flex-start;
-        transform: translateX(-100%);
-        transition: transform 0.3s;
         padding-top: 8vh;
+        padding-left: 0;
+        overflow-y: auto;
+        display: flex;
+        opacity: 0;
+        transform: translateX(-40px);
+        pointer-events: none;
+        transition: opacity 0.3s cubic-bezier(.4,0,.2,1), transform 0.3s cubic-bezier(.4,0,.2,1);
     }
     .top-nav.open {
+        opacity: 1;
         transform: translateX(0);
+        pointer-events: auto;
     }
     .top-nav ul {
         flex-direction: column;
-        gap: 3vh;
-        margin-left: 3vh;
+        gap: 2vh;
+        margin: 0;
+        width: 100%;
+        padding: 0 0 0 0.5em;
+    }
+    .top-nav ul li {
+        width: 100%;
     }
     .top-nav ul li a {
         color: var(--accent-color);
@@ -268,6 +282,13 @@ nav ul li a:hover, nav ul li a.active {
         transition: background 0.2s, color 0.2s;
         letter-spacing: 0.5px;
         display: block;
+        width: 90%;
+        margin: 0.3em 0 0.3em 0.5em;
+        background: rgba(255,255,255,0.04);
+    }
+    .top-nav ul li a:hover, .top-nav ul li a.active {
+        background: var(--accent-color);
+        color: #181818;
     }
     .menu-toggle {
         display: flex;
@@ -464,16 +485,26 @@ section ul li:hover {
 
 /* Footer */
 footer {
+    width: 100vw;
     background: rgba(24,24,24,0.92);
-    border-radius: var(--card-radius);
-    box-shadow: 0 2px 12px rgba(0,0,0,0.18);
-    margin: 4vh auto 0 auto;
-    max-width: 120vh;
+    border-radius: 0;
+    box-shadow: 0 -2px 12px rgba(0,0,0,0.18);
+    margin: 0;
     padding: 3vh 0 2vh 0;
     text-align: center;
     color: #aaa;
     font-size: 2vh;
     letter-spacing: 0.2px;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    z-index: 100;
+}
+@media (max-width: 900px) {
+    footer {
+        font-size: 1.5vh;
+        padding: 2vh 0 1vh 0;
+    }
 }
 
 /* Scroll to top button */
