@@ -17,12 +17,18 @@ window.addEventListener('DOMContentLoaded', function() {
     const scrollToTopBtn = document.getElementById('scrollToTop');
     if (scrollToTopBtn) {
         window.addEventListener('scroll', () => {
-            scrollToTopBtn.style.display = window.scrollY > 200 ? 'flex' : 'none';
+            if (window.scrollY > 200) {
+                scrollToTopBtn.classList.add('show');
+            } else {
+                scrollToTopBtn.classList.remove('show');
+            }
         });
         
         scrollToTopBtn.addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
+        // Ensure hidden on load
+        scrollToTopBtn.classList.remove('show');
     }
 
     window.addEventListener('load', function() {
@@ -45,17 +51,17 @@ window.addEventListener('DOMContentLoaded', function() {
     if (menuToggle && sideNav && navOverlay) {
         menuToggle.addEventListener('click', function() {
             sideNav.classList.toggle('open');
-            navOverlay.style.display = sideNav.classList.contains('open') ? 'block' : 'none';
+            navOverlay.classList.toggle('active');
         });
         navOverlay.addEventListener('click', function() {
             sideNav.classList.remove('open');
-            navOverlay.style.display = 'none';
+            navOverlay.classList.remove('active');
         });
         // Close menu when a link is clicked
         sideNav.querySelectorAll('a').forEach(function(link) {
             link.addEventListener('click', function() {
                 sideNav.classList.remove('open');
-                navOverlay.style.display = 'none';
+                navOverlay.classList.remove('active');
             });
         });
     }
@@ -74,8 +80,6 @@ window.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-
-    // Section fade-in on scroll
     function revealSectionsOnScroll() {
         const sections = document.querySelectorAll('section');
         const windowHeight = window.innerHeight;
